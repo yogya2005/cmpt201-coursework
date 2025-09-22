@@ -1,0 +1,19 @@
+#include <stdio.h>
+#include <unistd.h>
+int main() {
+    int x = 10;
+    
+    pid_t pid = fork();
+    
+    if (pid == 0) {
+        // Child process
+        x = 99;
+        printf("Child: x = %d\n", x);  // prints 99
+    } else {
+        // Parent process
+        sleep(1);  // Let child run first
+        printf("Parent: x = %d\n", x);  // still prints 10!
+    }
+    
+    return 0;
+}
