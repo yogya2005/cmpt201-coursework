@@ -1,0 +1,16 @@
+#define _DEFAULT_SOURCE
+
+#include <stdio.h>
+#include <unistd.h>
+
+int main() {
+  void *new_memory = sbrk(1024);
+  if (new_memory == (void *) -1) {
+    perror("sbrk failed");
+    return 1;
+  }
+
+  printf("Allocated memory at: %p\n", new_memory);
+
+}
+
