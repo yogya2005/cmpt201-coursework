@@ -6,9 +6,9 @@
   {                                                                            \
     if (!(expr)) {                                                             \
       fprintf(stderr, "Assertion failed: %s\n", #expr);                        \
-      fprintf(stderr, " at %s:%d\n", __FILE__, __LINE__);                      \
-      exit(1);                                                                 \
-    }                                                                          \
+      fprintf(stderr, " at %s:%d\n", __FILE__, __LINE__);
+      exit(1);
+    }
   }
 
 #define TEST(expr)                                                             \
