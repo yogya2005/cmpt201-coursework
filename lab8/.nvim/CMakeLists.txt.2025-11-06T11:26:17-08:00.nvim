@@ -8,9 +8,10 @@ project(
 
 set(CMAKE_BUILD_TYPE Debug)
 
-add_compile_options(-fsanitize=thread)
-add_link_options(-fsanitize=thread)
+add_compile_options(-fsanitize=address) 
+add_link_options(-fsanitize=address)
 add_compile_options(-pthread)
 add_link_options(-pthread)
 add_executable(main src/lab8.c)
 target_include_directories(main PRIVATE include)
+
