@@ -42,7 +42,7 @@ void *handle_client(void *arg) {
     buffer[bytes] = '\0';
     pthread_mutex_lock(&count_mutex);
     total_message_count++;
-    printf("Msg #   %d; Client ID %d: %s", total_message_count, client_id,
+    printf("Msg #   %d; Client ID %d: %s\n", total_message_count, client_id,
            buffer);
     pthread_mutex_unlock(&count_mutex);
   }
@@ -80,18 +80,19 @@ int main() {
   pthread_t thread;
   for (;;) {
     int cfd = accept(sfd, NULL, NULL);
+    pthread_mutex_lock(&client_id_mutex);
+    client_id_counter++;
+    pthread_mutex_unlock(&client_id_mutex);
     client_info = calloc(1, sizeof(struct client_info));
     client_info->cfd = cfd;
     client_info->client_id = client_id_counter;
     printf("New client created! ID %d on socket FD %d\n", client_id_counter,
            cfd);
-
-    pthread_mutex_lock(&client_id_mutex);
-    client_id_counter++;
-    pthread_mutex_unlock(&client_id_mutex);
-
     pthread_create(&thread, NULL, handle_client, client_info);
     pthread_detach(thread);
+    // TODO: create a new thread when a new connection is encountered
+    // TODO: call handle_client() when launching a new thread, and provide
+    // client_info
   }
 
   if (close(sfd) == -1) {

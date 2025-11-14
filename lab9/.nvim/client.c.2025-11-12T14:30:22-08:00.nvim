@@ -15,10 +15,10 @@ once the program is running. In the code, this is the read() function,
 specifically, read(STDIN_FILENO, buf, BUF_SIZE).
 
 4. How does the client program end? How can you tell that in the code?
-Answer: The client program end when the number of bytes read by the read
-function is less than or equal to 1 i.e. if the user presses Ctrl+D (0 bytes) or
-just presses enter without typing anything (1 byte). This can be seen in the
-code in the line "while ((num_read = read(STDIN_FILENO, buf, BUF_SIZE)) > 1 )
+Answer: The client program end when the number of bytes read by the read function is less than or
+equal to 1 i.e. if the user presses Ctrl+D (0 bytes) or just presses enter without typing anything (1
+byte). This can be seen in the code in the line "while ((num_read = read(STDIN_FILENO, buf,
+BUF_SIZE)) > 1 )
 */
 
 #include <arpa/inet.h>

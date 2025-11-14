@@ -83,8 +83,7 @@ int main() {
     client_info = calloc(1, sizeof(struct client_info));
     client_info->cfd = cfd;
     client_info->client_id = client_id_counter;
-    printf("New client created! ID %d on socket FD %d\n", client_id_counter,
-           cfd);
+    printf("New client created! ID %d on socket FD %d\n", client_id_counter, cfd);
 
     pthread_mutex_lock(&client_id_mutex);
     client_id_counter++;
